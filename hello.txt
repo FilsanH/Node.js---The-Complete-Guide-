@@ -1,0 +1,42 @@
+remeber app.use ('/') must go at the end as reads from topt o bottom 
+
+// app.use((req, res, next) => {
+//   console.log('In the middleware')
+//   next() // call next to entre next middleware
+// })
+
+// app.use((req, res, next) => {
+//   console.log('In the middleware')
+//   res.send('<h1> hello from Express!</h1>') // call next to entre next middleware
+// })
+
+// app.use('/add-product', (req, res, next) => {
+//   console.log('In the middleware')<form action="/product" method='POST'><input type="text" name="title"/><button type="submit"> submit </button></form>
+
+//   res.send(`<form action="/product" method='POST'><input type="text" name="title"/><button type="submit"> submit </button></form>
+// `) // call next to entre next middleware
+// })
+
+// app.use('/product', (req, res, next) => {
+//   console.log(req.body)
+//   res.redirect('/')
+// })
+
+// 
+// const server = http.createServer(app)
+
+// server.listen(3000) // listen to server on port 3000
+// using express can use app.listen(3000) this creates the http server
+
+
+rootDir allows you to dynamically account for the position of the current file in the folder e.g '../'
+
+exports is used for making more than one value (e.g class methods) available for use (export) in a file, these are known as named exports.
+module.exports is for making just one value (e.g the entire class) available for use (export). This is known as the default export
+
+
+res.sendfile used to send html files whereas res.render is used to send ejs
+res.render is connected to the app.set (views engine ) here the default path is views folder so don't need to set root dir 
+
+Extracting dynamic Para,m make sure put similar spefic routes above this route 
+e.g /profuct/:productid mean /products/anything 
