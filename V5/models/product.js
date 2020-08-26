@@ -2,7 +2,7 @@ const getDb = require('../util/database').getDb
 const mongodb = require('mongodb')
 
 class Product {
-  constructor(title, price, description, imageUrl) {
+  constructor(title, price, description, imageUrl, id) {
     this.title = title
     this.price = price
     this.description = description
@@ -16,15 +16,13 @@ class Product {
     if (this._id) {
       //Update the product
       //not id is not over written
-      dpOp = db
+      dbOp = db
         .collection('products')
         .updateOne({ _id: new mongodb.ObjectID(this._id) }, { $set: this }) //specfiy changes you want to make to db
     } else {
-      dpOp = db.collection('products').insertOne(this)
+      dbOp = db.collection('products').insertOne(this)
     }
-    return db
-      .collection('products')
-      .insertOne(this)
+    return dbOp
       .then((result) => {
         console.log(result)
       })
