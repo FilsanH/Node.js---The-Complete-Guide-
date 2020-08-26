@@ -7,7 +7,7 @@ class Product {
     this.price = price
     this.description = description
     this.imageUrl = imageUrl
-    this._id = id // if set update product if not create a new one in save()
+    this._id = id ? id : null // if set update product if not create a new one in save()
   }
 
   save() {
@@ -55,6 +55,20 @@ class Product {
       .then((product) => {
         console.log(product)
         return product
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  static deleteById(prodId) {
+    const db = getDb()
+    db.collection('products')
+      .deleteOne({ _id: new mongodb.ObjectID(prodId) })
+      .then((result) => {
+        console.log('Deleted')
+
+        return result
       })
       .catch((err) => {
         console.log(err)
