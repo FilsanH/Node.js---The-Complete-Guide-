@@ -7,10 +7,21 @@ class Product {
     this.price = price
     this.description = description
     this.imageUrl = imageUrl
+    this._id = id // if set update product if not create a new one in save()
   }
 
   save() {
     const db = getDb()
+    let dbOp
+    if (this._id) {
+      //Update the product
+      //not id is not over written
+      dpOp = db
+        .collection('products')
+        .updateOne({ _id: new mongodb.ObjectID(this._id) }, { $set: this }) //specfiy changes you want to make to db
+    } else {
+      dpOp = db.collection('products').insertOne(this)
+    }
     return db
       .collection('products')
       .insertOne(this)
