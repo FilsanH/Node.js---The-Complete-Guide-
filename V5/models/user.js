@@ -46,6 +46,31 @@ class User {
         { $set: { cart: updatedCart } }
       )
   }
+
+  // return cart items roperty of product
+  getCart() {
+    const db = getDb()
+    //find all product with specific id and therfore user
+    //return a list of product ids that exist in product cart
+    const productIds = this.cart.items.map((i) => {
+      return i.productId
+    })
+    return db
+      .collection('products')
+      .find({ _id: { $in: productIds } })
+      .toArray()
+      .then((products) => {
+        return products.map((p) => {
+          return {
+            //reuturn object with same old product properties with updated quantity
+            ...p,
+            quantity: this.cart.items.find((i) => {
+              return i.productId.toString() === p._id.toString()
+            }).quantity,
+          }
+        })
+      })
+  }
   static findById(userId) {
     const db = getDb()
     return db
