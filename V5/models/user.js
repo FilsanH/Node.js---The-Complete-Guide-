@@ -88,9 +88,17 @@ class User {
   addOrder() {
     // add order to user or could do the other way around
     const db = getDb()
-    return db
-      .collection('orders')
-      .insertOne(this.cart)
+    return this.getCart()
+      .then((products) => {
+        const order = {
+          items: products,
+          user: {
+            _id: new ObjectId(this._id),
+            name: this.name,
+          },
+        }
+        return db.collection('orders').insertOne(order)
+      })
       .then((result) => {
         this.cart = { items: [] } // empty the cart in the user object and then from the database
         return db
@@ -101,6 +109,7 @@ class User {
           )
       })
   }
+
   static findById(userId) {
     const db = getDb()
     return db
