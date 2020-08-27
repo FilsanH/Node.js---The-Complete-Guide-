@@ -85,6 +85,22 @@ class User {
         { $set: { cart: { items: updatedCartItems } } }
       )
   }
+  addOrder() {
+    // add order to user or could do the other way around
+    const db = getDb()
+    return db
+      .collection('orders')
+      .insertOne(this.cart)
+      .then((result) => {
+        this.cart = { items: [] } // empty the cart in the user object and then from the database
+        return db
+          .collection('users')
+          .updateOne(
+            { _id: new ObjectId(this._id) },
+            { $set: { cart: { items: [] } } }
+          )
+      })
+  }
   static findById(userId) {
     const db = getDb()
     return db
