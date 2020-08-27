@@ -17,13 +17,26 @@ class User {
 
   addToCart(product) {
     //check if cart already contains product
-    // const cartProduct = this.cart.items.findIndexcart(cartProd=>{
-    //   return cartProd === product._id
-    // })
+    const cartProductIndex = this.cart.items.findIndex((cartProd) => {
+      return cartProd.productId.toString() == product._id.toString() //product id is not a string
+    })
+    let newQuantity = 1
+    //copy array and then edit the new one
+    const updatedCartItems = [...this.cart.items]
+    if (cartProductIndex >= 0) {
+      //product exists so append quantity by 1
+      newQuantity = this.cart.items[cartProductIndex].quantity + 1
+      updatedCartItems[cartProductIndex].quantity = newQuantity
+    } else {
+      updatedCartItems.push({
+        productId: new ObjectId(product._id),
+        quantity: 1,
+      })
+    }
 
     // store only the reference and the quantity not the elements so don;t have to update
     const updatedCart = {
-      items: [{ productId: new ObjectId(product._id), quantity: 1 }],
+      items: updatedCartItems,
     }
     const db = getDb()
     return db
