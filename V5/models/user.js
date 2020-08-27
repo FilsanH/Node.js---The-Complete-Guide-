@@ -21,8 +21,10 @@ class User {
     //   return cartProd === product._id
     // })
 
-    // store only the reference and the quantity not the elements so don;t have to update 
-    const updatedCart = { items: [{...product, quantity: 1 }] }
+    // store only the reference and the quantity not the elements so don;t have to update
+    const updatedCart = {
+      items: [{ productId: new ObjectId(product._id), quantity: 1 }],
+    }
     const db = getDb()
     return db
       .collection('users')
