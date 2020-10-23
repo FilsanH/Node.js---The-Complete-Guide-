@@ -1,12 +1,19 @@
 # Node.js---The-Complete-Guide-
-Goal: Explore back-end web-development further.
-How: Work along and complete the Node.js ‘The Complete Guide’ udemy Course. Ensure that I make understandable git commits to aid any ‘revision’.
-Learnt so far:
--	Working with Express 
+
+## Goal
+Explore back-end web-development further.
+
+## How I will do this 
+Work along and complete the Node.js ‘The Complete Guide’ udemy Course. Ensure that I make understandable git commits to aid any ‘revision’.
+
+## Built with 
+Javascript , HTML and CSS, Node.js,  Express.js, MongoDB 
+
+## Learnt so far:
 -	The Model View Controller (MVC)
--	Routes 
--	Working with Mongoose and MongoDb 
-Languages: HTML, CSSS, Javascript, Node.js, Express
-Database: MongoDB
-Acknowledgements: Udemy Course: Nodejs-the-complete-guide 
+-	Working with Mongoose and MongoDB
+
+## Acknowledgements
+* [Node.js Tutorial](https://www.udemy.com/course/nodejs-the-complete-guide/)
+
 
